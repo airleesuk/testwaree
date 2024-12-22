@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ถังเก็บน้ำ WAREE-1000 | WAREE Solution</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0063A3;
+            --secondary-color: #00A3E1;
+            --text-color: #333;
+            --background-light: #F4F7FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header - เหมือนหน้าหลัก */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 20px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Product Detail Section */
+        .product-detail {
+            display: flex;
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .product-images {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .thumbnail-images {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .thumbnail {
+            width: 23%;
+            height: 100px;
+            object-fit: contain;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+        }
+
+        .product-info {
+            width: 50%;
+            padding-left: 50px;
+        }
+
+        .product-title {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            margin-bottom: 30px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quantity-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Tabs */
+        .product-tabs {
+            margin-top: 50px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tab-header {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab-header button {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tab-header button.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .tab-content {
+            padding: 30px;
+        }
+
+        /* Footer - เหมือนหน้าหลัก */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 15px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header เหมือนหน้าหลัก -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="/api/placeholder/50/50" alt="WAREE Logo">
+                WAREE
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#">หน้าแรก</a></li>
+                <li><a href="#">สินค้า</a></li>
+                <li><a href="#">บริการ</a></li>
+                <li><a href="#">ติดต่อ</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="product-detail">
+            <div class="product-images">
+                <img src="/api/placeholder/500/500" alt="ถังเก็บน้ำ WAREE-1000" class="main-image" id="mainImage">
+                <div class="thumbnail-images">
+                    <img src="/api/placeholder/100/100" alt="ภาพที่ 1" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="/api/placeholder/100/100" alt="ภาพที่ 2" class="thumbnail" onclick="changeImage(this)">
+                    <img src="/api/placeholder/100/100" alt="ภาพที่ 3" class="thumbnail" onclick="changeImage(this)">
+                    <img src="/api/placeholder/100/100" alt="ภาพที่ 4" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">ถังเก็บน้ำ WAREE-1000</h1>
+                <p class="product-price">4,500 บาท</p>
+
+                <div class="product-description">
+                    <p>ถังเก็บน้ำคุณภาพสูง ความจุ 1,000 ลิตร ผลิตจากวัสดุเกรดพรีเมียม ทนทานต่อแสงแดดและสารเคมี เหมาะสำหรับใช้งานในบ้านและอุตสาหกรรม</p>
+                </div>
+
+                <div class="quantity-control">
+                    <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" id="quantity">
+                    <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                </div>
+
+                <a href="#" class="add-to-cart">เพิ่มสินค้าลงตะกร้า</a>
+            </div>
+        </section>
+
+        <section class="product-tabs">
+            <div class="tab-header">
+                <button class="active" onclick="openTab('details')">รายละเอียดสินค้า</button>
+                <button onclick="openTab('specs')">คุณสมบัติทางเทคนิค</button>
+                <button onclick="openTab('reviews')">รีวิวลูกค้า</button>
+            </div>
+            <div class="tab-content" id="tabContent">
+                <!-- Content จะถูกเปลี่ยนแปลงด้วย JavaScript -->
+                <div id="details">
+                    <h3>รายละเอียดสินค้า</h3>
+                    <ul>
+                        <li>ขนาด: 1,000 ลิตร</li>
+                        <li>วัสดุ: พลาสติก HDPE เกรดพรีเมียม</li>
+                        <li>น้ำหนัก: 50 กก.</li>
+                        <li>สี: น้ำเงิน</li>
+                        <li>การรับประกัน: 5 ปี</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>WAREE Solution</h3>
+                <p>จำหน่ายอุปกรณ์ระบบน้ำครบวงจร คุณภาพสูง บริการดี</p>
+            </div>
+            <div class="footer-section">
+                <h3>ติดต่อเรา</h3>
+                <p>โทร: 02-XXX-XXXX</p>
+                <p>อีเมล: contact@waree.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>ติดตามเรา</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-line"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function changeImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            mainImage.src = thumbnail.src;
+            
+            thumbnails.forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+
+        function changeQuantity(amount) {
+            const quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            let newValue = currentValue + amount;
+            
+            if (newValue >= 1) {
+                quantityInput.value = newValue;
+            }
+        }
+
+        function openTab(tabName) {
+            const tabContent = document.getElementById('tabContent');
+            const tabButtons = document.querySelectorAll('.tab-header button');
+
+            // Reset active state
+            tabButtons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Content for tabs
+            let content = '';
+            switch(tabName) {
+                case 'details':
+                    content = `
+                        <h3>รายละเอียดสินค้า</h3>
+                        <ul>
+                            <li>ขนาด: 1,000 ลิตร</li>
+                            <li>วัสดุ: พลาสติก HDPE เกรดพรีเมียม</li>
+                            <li>น้ำหนัก: 50 กก.</li>
+                            <li>สี: น้ำเงิน</li>
+                            <li>การรับประกัน: 5 ปี</li>
+                        </ul>
+                    `;
+                    break;
+                case 'specs':
+                    content = `
+                        <h3>คุณสมบัติทางเทคนิค</h3>
+                        <table>
+                            <tr>
+                                <td>ความจุ:</td>
+                                <td>1,000 ลิตร</td>
+                            </tr>
+                            <tr>
+                                <td>เส้นผ่านศูนย์กลาง:</td>
+                                <td>1.2 เมตร</td>
+                            </tr>
+                            <tr>
+                                <td>ความสูง:</td>
+                                <td>2.0 เมตร</td>
+                            </tr>
+                            <tr>
+                                <td>ความหนาผนัง:</td>
+                                <td>8 มม.</td>
+                            </tr>
+                        </table>
+                    `;
+                    break;
+                case 'reviews':
+                    content = `
+                        <h3>รีวิวลูกค้า</h3>
+                        <div class="review">
+                            <p>"ถังเก็บน้ำคุณภาพดี ทนทาน ราคาเหมาะสม" - สมชาย</p>
+                            <p>"ใช้งานมาแล้ว 2 ปี ยังไม่มีปัญหาใดๆ" - วิไลวรรณ</p>
+                        </div>
+                    `;
+                    break;
+            }
+
+            tabContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>
+</antArtif
